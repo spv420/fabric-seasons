@@ -23,7 +23,7 @@ public abstract class SnowBlockMixin extends Block implements Meltable {
 
     @Inject(at = @At("HEAD"), method = "randomTick")
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
-        if (world.getLightLevel(LightType.SKY, pos) > 0 && world.getBiome(pos).value().getTemperature(pos) >= 0.15F && !FabricSeasons.getPlacedMeltablesState(world).isManuallyPlaced(pos)) {
+        if (world.getLightLevel(LightType.SKY, pos) > 0 && world.getBiome(pos).value().getTemperature(pos) >= 0.15F) {
             Block.dropStacks(state, world, pos);
             BlockState replacedState = FabricSeasons.getReplacedMeltablesState(world).getReplaced(pos);
             if(replacedState != null) {
